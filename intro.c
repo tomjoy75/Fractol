@@ -6,12 +6,13 @@
 /*   By: tjoyeux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:42:46 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/17 23:55:17 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/18 11:50:41 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx/mlx.h"
 #include <stdlib.h>
+#include <time.h>
 
 #define	WIDTH 500
 #define	HEIGHT 500
@@ -21,6 +22,7 @@ int	main()
 	void	*mlx;
 	void	*mlx_window;
 
+	srand(time NULL);
 	mlx = mlx_init();
 	mlx_window = mlx_new_window(mlx,
 					WIDTH,
