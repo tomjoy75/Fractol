@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_setup.c                                      :+:      :+:    :+:   */
+/*   handles_event.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjoyeux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 14:29:14 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/21 01:04:00 by tjoyeux          ###   ########.fr       */
+/*   Created: 2024/01/21 22:56:46 by tjoyeux           #+#    #+#             */
+/*   Updated: 2024/01/21 23:52:06 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "mlx.h"
+#include <X11/keysym.h>
 #define MLX_ERROR 1
 
 #define	WINDOW_WIDTH 600
@@ -36,3 +37,4 @@ int	main(void)
 }
 //clang basic_setup.c -o basic_setup -I../mlx/ -L../mlx/ $(pkg-config --cflags --libs x11 xext) ../mlx/libmlx_Linux.a
 //https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx
+

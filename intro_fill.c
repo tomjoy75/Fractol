@@ -6,7 +6,7 @@
 /*   By: tjoyeux <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:42:46 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/18 15:44:49 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/19 00:11:19 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ int	main(void)
 		color += i;
 	}
 	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
+//	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
 	mlx_loop(mlx);
+	mlx_destroy_image(mlx, img.img);
+	mlx_destroy_window(mlx, mlx_window);
+	mlx_destroy_display(mlx);
+	free(mlx);
 }
