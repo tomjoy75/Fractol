@@ -13,6 +13,7 @@
 #include "mlx/mlx.h"
 #include <stdlib.h>
 
+#define MLX_ERROR 1
 #define	WIDTH 1920
 #define	HEIGHT 500
 
@@ -44,6 +45,13 @@ int	close(int keycode, t_vars *vars)
 	return (0);
 }
 
+int render(t_vars *data)
+{
+	if (data->win == NULL)
+		return (1);
+	
+}
+
 int	main(void)
 {
 	void	*mlx;
@@ -55,8 +63,10 @@ int	main(void)
 	color = 0x000000;
 	mlx = mlx_init();
 	if (NULL == mlx)
-		return (1);
-	mlx_window = mlx_new_window(mlx,WIDTH,HEIGHT,"My first window");
+		return (MLX_ERROR);
+	mlx_window = mlx_new_window(mlx, WIDTH, HEIGHT,"My first window");
+	if (!mlx_window)
+		return (free(mlx), MLX_ERROR);
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.len, &img.endian);
 	for (int i = HEIGHT * 0.1; i < HEIGHT * 0.9; ++i)
@@ -68,6 +78,7 @@ int	main(void)
 		}
 		color += i;
 	}
+	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
 //	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
 	mlx_loop(mlx);
