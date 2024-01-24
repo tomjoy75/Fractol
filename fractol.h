@@ -16,8 +16,10 @@
 # include <stdlib.h>
 #include "mlx/mlx.h"
 # define MLX_ERROR 1
-# define WIDTH 1920
-# define HEIGHT 500
+# define WINDOW_WIDTH 270
+# define WINDOW_HEIGHT 240
+# define XK_Escape 0xff1b
+typedef unsigned char uint8_t;
 //structure image
 typedef struct s_img
 {
@@ -27,12 +29,30 @@ typedef struct s_img
 	int	line_len;
 	int	endian;
 }		t_img;
+//drawing zone
+typedef struct s_draw
+{
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
+	double	zoom;
+}		t_draw;
 //structure de base
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win_ptr;
 	t_img	img;
+	t_draw	draw;
 }		t_data;
+//nombre complexe
+typedef struct s_complex
+{
+	double	real;
+	double	i;
+}		t_complex;
+
+
 
 #endif

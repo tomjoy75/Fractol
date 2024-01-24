@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <math.h>
+//#include <math.h>
 #define MAX_ITER 50
 
 typedef struct s_complex
@@ -30,9 +30,9 @@ void	next_complex_nb(t_complex c, t_complex *z)
 	z->i = 2 * tmp.real * tmp.i + c.i;
 }
 
-double	magnitude(t_complex z)
+double	magnitude_squared(t_complex z)
 {
-	return (sqrt((z.real * z.real) + (z.i * z.i)));
+	return ((z.real * z.real) + (z.i * z.i));
 }
 
 int	main(void)
@@ -47,7 +47,7 @@ int	main(void)
 	{
 		next_complex_nb(c, &z);
 		printf("iteration %d: z = %f + %fi\n", iter, z.real, z.i);
-		if (magnitude(z) > 2)
+		if (magnitude_squared(z) > 4)
 		{
 			printf("\nThis value diverge after %d iteration !!!\n", iter);
 			divergent++;
