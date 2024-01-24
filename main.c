@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/23 23:54:56 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/25 00:33:03 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 t_draw	define_drawing_zone(void)
 {
 	t_draw	draw;
-	
+
 	draw.x_min = -2.1;
 	draw.x_max = 0.6;
 	draw.y_min = -1.2;
@@ -37,18 +37,27 @@ t_draw	define_drawing_zone(void)
 	return (draw);
 }
 
-void	render_fractal(t_img *img, int color)
+void	render_fractal(t_img *img, t_draw draw, int color)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
+	t_complex n;
 
-	i = 0;
-	while (i < WINDOW_HEIGHT)
+	y = 0;
+	while (y < WINDOW_HEIGHT)
 	{
-		j = 0;
-		while (j < WINDOW_WIDTH)
-			img_pix_put(img, j++, i, color);
-		++i;
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			n.real = x * (draw.x_max - draw.x_min) / WINDOW_WIDTH + draw.x_min;
+			n.i = (WINDOW_HEIGHT - y) * (draw.y_max - draw.y_min) / WINDOW_HEIGHT + draw.y_min;
+			if (is_convergent (n))
+				img_pix_put(img, x, y, color);
+			else
+				img_pix_put(img, x, y, 0xFFFFFF);
+			x++;
+		}
+		++y;
 	}
 }
 
@@ -58,7 +67,7 @@ int	render(t_data *data)
 		return (1);
 
 //		mlx_pixel_put(data->mlx, data->win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, RED_PIXEL);
-	render_fractal(&data->img, 0xFF0000);
+	render_fractal(&data->img, data->draw, 0x000000);
 //	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
 //	render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
 	mlx_put_image_to_window(data->mlx, data->win_ptr, data->img.mlx_img, 0, 0);

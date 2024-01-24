@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/23 23:49:24 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/25 00:34:35 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 #include "mlx/mlx.h"
 # define MLX_ERROR 1
-# define WINDOW_WIDTH 270
-# define WINDOW_HEIGHT 240
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 960
 # define XK_Escape 0xff1b
 typedef unsigned char uint8_t;
 //structure image
@@ -52,6 +52,8 @@ typedef struct s_complex
 	double	real;
 	double	i;
 }		t_complex;
+
+int	is_convergent(t_complex n);
 
 
 

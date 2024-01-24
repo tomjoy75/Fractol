@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   complex_exo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 10:13:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/23 16:11:02 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/25 00:27:31 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "fractol.h"
 //#include <math.h>
 #define MAX_ITER 50
 
-typedef struct s_complex
+/*typedef struct s_complex
 {
 	double	real;
 	double	i;
-}		t_complex;
+}		t_complex;*/
 
 void	next_complex_nb(t_complex c, t_complex *z)
 {
@@ -35,9 +36,9 @@ double	magnitude_squared(t_complex z)
 	return ((z.real * z.real) + (z.i * z.i));
 }
 
-int	main(void)
+int	is_convergent(t_complex n)
 {
-	t_complex	c = {-0.666, 0.367};
+	//t_complex	c = {-0.666, 0.367};
 	t_complex	z = {0, 0};
 	int		iter;
 	int		divergent = 0;
@@ -45,14 +46,17 @@ int	main(void)
 	iter = 0;
 	while (++iter < MAX_ITER && !divergent)
 	{
-		next_complex_nb(c, &z);
-		printf("iteration %d: z = %f + %fi\n", iter, z.real, z.i);
+		next_complex_nb(n, &z);
+		//printf("iteration %d: z = %f + %fi\n", iter, z.real, z.i);
 		if (magnitude_squared(z) > 4)
-		{
+			return (0);
+/*		{
 			printf("\nThis value diverge after %d iteration !!!\n", iter);
+
 			divergent++;
-		}
+		}*/
 	}
-	if (!divergent)
-		printf("\nThis value converge .\n");
+	return (1);
+/*	if (!divergent)
+		printf("\nThis value converge .\n");*/
 }
