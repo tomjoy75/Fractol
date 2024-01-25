@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/25 13:01:18 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/25 14:02:23 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
 
 int	get_color(int iter)
 {
-	t_color	start = {255, 255, 255};
-	t_color	end = {0, 0, 51};
+	t_color	start = {0, 0, 51};
+	t_color	end = {255, 255, 255};
 	t_color actual;
+	double	fraction;
 
-	actual.red = (uint8_t)(start.red + (iter / MAX_ITER) * (end.red - start.red));
-	actual.green = (uint8_t)(start.green + (iter / MAX_ITER) * (end.green - start.green));
-	actual.blue = (uint8_t)(start.blue + (iter / MAX_ITER) * (end.blue - start.blue));
+	fraction = (double)iter / MAX_ITER;
+	actual.red = (uint8_t)(start.red + fraction * (end.red - start.red));
+	actual.green = (uint8_t)(start.green + fraction * (end.green - start.green));
+	actual.blue = (uint8_t)(start.blue + fraction * (end.blue - start.blue));
 	return (encode_rgb(actual.red, actual.green, actual.blue));
 }
 
