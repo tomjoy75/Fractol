@@ -19,7 +19,7 @@
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 960
 # define XK_Escape 0xff1b
-# define MAX_ITER 200
+# define MAX_ITER 100
 typedef unsigned char uint8_t;
 //structure image
 typedef struct s_img
