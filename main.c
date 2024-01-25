@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/25 00:33:03 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/25 13:01:18 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
 	return (red << 16 | green << 8 | blue);
+}
+
+int	get_color(int iter)
+{
+	t_color	start = {255, 255, 255};
+	t_color	end = {0, 0, 51};
+	t_color actual;
+
+	actual.red = (uint8_t)(start.red + (iter / MAX_ITER) * (end.red - start.red));
+	actual.green = (uint8_t)(start.green + (iter / MAX_ITER) * (end.green - start.green));
+	actual.blue = (uint8_t)(start.blue + (iter / MAX_ITER) * (end.blue - start.blue));
+	return (encode_rgb(actual.red, actual.green, actual.blue));
 }
 
 void	img_pix_put(t_img *img, int x, int y, int color)
@@ -42,6 +54,7 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 	int	x;
 	int	y;
 	t_complex n;
+	int	iter;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -51,10 +64,11 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 		{
 			n.real = x * (draw.x_max - draw.x_min) / WINDOW_WIDTH + draw.x_min;
 			n.i = (WINDOW_HEIGHT - y) * (draw.y_max - draw.y_min) / WINDOW_HEIGHT + draw.y_min;
-			if (is_convergent (n))
+			iter = is_divergent(n);
+			if (!iter)
 				img_pix_put(img, x, y, color);
 			else
-				img_pix_put(img, x, y, 0xFFFFFF);
+				img_pix_put(img, x, y, get_color(iter));
 			x++;
 		}
 		++y;
