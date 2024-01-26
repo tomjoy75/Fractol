@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/26 13:57:41 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/25 14:02:23 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,3 @@ int	main(void)
 	free(data.mlx);
 }
 // gcc ./main.c ./mlx/libmlx_Linux.a -lXext -lX11 -lm -o fractol
-// gcc srcs/*.c -L./mlx/ -lmlx_Linux -I. -lXext -lX11 -lm -o fractol

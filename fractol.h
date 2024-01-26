@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/25 12:58:51 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:49:53 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,16 @@ typedef struct s_color
 	uint8_t	blue;
 }		t_color;
 
+// Rendering
+int	render(t_data *data);
+// Graphics
+int	get_color(int iter);
+void	img_pix_put(t_img *img, int x, int y, int color);
+t_draw	define_drawing_zone(void);
+// Input
+int	handle_keypress(int keysym, t_data *data);
+// Zoom
+// Fractal
 int	is_divergent(t_complex n);
 
 
