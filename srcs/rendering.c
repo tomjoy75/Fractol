@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:30:45 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/26 11:31:29 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/30 13:53:44 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 			if (!iter)
 				img_pix_put(img, x, y, color);
 			else
-				img_pix_put(img, x, y, get_color(iter));
+				img_pix_put(img, x, y, draw.get_color(iter));
 			x++;
 		}
 		++y;

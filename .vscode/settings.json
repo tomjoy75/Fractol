@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"fractol.h": "c"
+		"fractol.h": "c",
+		"mlx.h": "c",
+		"mlx_int.h": "c",
+		"xlib.h": "c",
+		"xutil.h": "c",
+		"fcntl.h": "c"
 	}
 }
