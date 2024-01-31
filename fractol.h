@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 13:39:44 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/31 16:51:10 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define XK_KP_F2                         0xffbf
 # define XK_KP_F3                         0xffc0
 # define XK_KP_F4                         0xffc1
-# define MAX_ITER 100
+# define MAX_ITER 50
 typedef unsigned char uint8_t;
 //structure image
 typedef struct s_img
@@ -54,6 +54,7 @@ typedef struct s_draw
 	double	y_min;
 	double	y_max;
 	double	zoom;
+	double		nb_iter;
 	int		(*get_color)(int);
 }		t_draw;
 //structure de base
@@ -94,8 +95,9 @@ int mouse_handler(int mousecode, int x, int y, t_data *data);
 int mouse_movement(int x, int y, t_data *data);
 // Zoom
 int	zoom_in(int x, int y, t_draw *draw);
+int zoom_out(int x, int y, t_draw *draw);
 // Fractal
-int	is_divergent(t_complex n);
+int	is_divergent(t_complex n, int nb_iter);
 
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 13:25:10 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/31 17:23:21 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,15 @@ int mouse_handler(int mousecode, int x, int y, t_data *data)
      else if (mousecode == 3)
          printf("Middle Click");
      else if (mousecode == 4)
-//         printf("Scroll UP");
+     {
+        printf("Scroll UP");
         zoom_in(x, y, &data->draw);
+     }
      else if (mousecode == 5)
-         printf("Scroll DOWN");
+     {
+        printf("Scroll DOWN");
+        zoom_out(x, y, &data->draw);
+     }
      else if (mousecode == 6)
          printf("Scroll right");
      else if (mousecode == 7)

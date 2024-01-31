@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:40:37 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/26 14:59:52 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/31 15:49:28 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	magnitude_squared(t_complex z)
 	return ((z.real * z.real) + (z.i * z.i));
 }
 
-int	is_divergent(t_complex n)
+int	is_divergent(t_complex n, int nb_iter)
 {
 	//t_complex	c = {-0.666, 0.367};
 	t_complex	z = {0, 0};
@@ -35,7 +35,7 @@ int	is_divergent(t_complex n)
 	//int		divergent = 0;
 
 	iter = 0;
-	while (++iter < MAX_ITER) /*&& !divergent*/
+	while (++iter < nb_iter) /*&& !divergent*/
 	{
 		next_complex_nb(n, &z);
 		//printf("iteration %d: z = %f + %fi\n", iter, z.real, z.i);

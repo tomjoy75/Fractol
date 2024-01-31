@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:39:08 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 13:31:58 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/31 15:55:44 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_draw	define_drawing_zone(void)
 	draw.y_max = 1.2;
 	//draw.zoom = WINDOW_WIDTH / (draw.x_max - draw.x_min);
 	draw.zoom = 2.0;
+	draw.nb_iter = (double)MAX_ITER;
 	draw.get_color = get_color_blue;
 	return (draw);
 }
