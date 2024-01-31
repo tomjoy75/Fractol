@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/30 16:22:26 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/31 13:25:10 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 
-int mouse_handler(int mousecode, int x, int y)
+int mouse_handler(int mousecode, int x, int y, t_data *data)
 {
     /* x and y parameters are the pixel coordinates of the mouse
      * in the window when the event was emitted
      * you can use them to check that the user clicked in a specific region
      * of the window
      */
+    //(void)data;
+    printf("Mouse handler called\n");
      if (mousecode == 1)
          printf("Left Click");
      else if (mousecode == 2)
@@ -45,7 +47,8 @@ int mouse_handler(int mousecode, int x, int y)
      else if (mousecode == 3)
          printf("Middle Click");
      else if (mousecode == 4)
-         printf("Scroll UP");
+//         printf("Scroll UP");
+        zoom_in(x, y, &data->draw);
      else if (mousecode == 5)
          printf("Scroll DOWN");
      else if (mousecode == 6)
@@ -58,4 +61,9 @@ int mouse_handler(int mousecode, int x, int y)
 	return (0);
 }
 
-
+int mouse_movement(int x, int y, t_data *data)
+{
+    (void)data;
+    printf("x:%d, y:%d\n", x, y);
+    return (0);
+}

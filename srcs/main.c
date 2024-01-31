@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/25 14:02:23 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/01/31 11:40:47 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,13 @@ int	main(void)
 	data.draw = define_drawing_zone();
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_hook(data.win_ptr, 2, (1L<<0), &handle_keypress, &data);
+	mlx_hook(data.win_ptr, 4, (1L<<2), &mouse_handler, &data);
+//	mlx_hook(data.win_ptr, 6, 0L, &mouse_movement , &data);
+	mlx_hook(data.win_ptr, 2, (1L<<0), handle_keypress, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img.mlx_img);
 	mlx_destroy_display(data.mlx);
 	free(data.mlx);
 }
 // gcc ./main.c ./mlx/libmlx_Linux.a -lXext -lX11 -lm -o fractol
+// gcc srcs/*.c -L./mlx/ -lmlx_Linux -I. -lXext -lX11 -lm -o fractol

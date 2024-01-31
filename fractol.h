@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/30 16:23:07 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/01/31 13:39:44 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-#include "mlx/mlx.h"
+# include "mlx/mlx.h"
 # define MLX_ERROR 1
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 960
@@ -31,10 +31,10 @@
 // # define XK_KP_7                          0xffb7
 // # define XK_KP_8                          0xffb8
 // # define XK_KP_9                          0xffb9
-#define XK_KP_F1                         0xffbe  
-#define XK_KP_F2                         0xffbf
-#define XK_KP_F3                         0xffc0
-#define XK_KP_F4                         0xffc1
+# define XK_KP_F1                         0xffbe
+# define XK_KP_F2                         0xffbf
+# define XK_KP_F3                         0xffc0
+# define XK_KP_F4                         0xffc1
 # define MAX_ITER 100
 typedef unsigned char uint8_t;
 //structure image
@@ -90,8 +90,10 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 t_draw	define_drawing_zone(void);
 // Input
 int	handle_keypress(int keysym, t_data *data);
-int mouse_handler(int mousecode, int x, int y);
+int mouse_handler(int mousecode, int x, int y, t_data *data);
+int mouse_movement(int x, int y, t_data *data);
 // Zoom
+int	zoom_in(int x, int y, t_draw *draw);
 // Fractal
 int	is_divergent(t_complex n);
 
