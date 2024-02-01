@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 11:40:47 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/02 00:44:49 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	main(void)
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win_ptr, 4, (1L<<2), &mouse_handler, &data);
-//	mlx_hook(data.win_ptr, 6, 0L, &mouse_movement , &data);
+	mlx_hook(data.win_ptr, 6, 0L, &mouse_movement , &data);
 	mlx_hook(data.win_ptr, 2, (1L<<0), handle_keypress, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img.mlx_img);

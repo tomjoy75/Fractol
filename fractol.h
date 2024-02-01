@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 16:51:10 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:39:29 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,18 @@
 # define XK_KP_F2                         0xffbf
 # define XK_KP_F3                         0xffc0
 # define XK_KP_F4                         0xffc1
+#define XK_Left                          0xff51  /* Move left, left arrow */
+#define XK_Up                            0xff52  /* Move up, up arrow */
+#define XK_Right                         0xff53  /* Move right, right arrow */
+#define XK_Down                          0xff54  /* Move down, down arrow */
 # define MAX_ITER 50
 typedef unsigned char uint8_t;
+//nombre complexe
+typedef struct s_complex
+{
+	double	real;
+	double	i;
+}		t_complex;
 //structure image
 typedef struct s_img
 {
@@ -56,6 +66,7 @@ typedef struct s_draw
 	double	zoom;
 	double		nb_iter;
 	int		(*get_color)(int);
+	t_complex	c_julia;
 }		t_draw;
 //structure de base
 typedef struct s_data
@@ -65,12 +76,6 @@ typedef struct s_data
 	t_img	img;
 	t_draw	draw;
 }		t_data;
-//nombre complexe
-typedef struct s_complex
-{
-	double	real;
-	double	i;
-}		t_complex;
 //color
 typedef struct s_color
 {
@@ -96,8 +101,14 @@ int mouse_movement(int x, int y, t_data *data);
 // Zoom
 int	zoom_in(int x, int y, t_draw *draw);
 int zoom_out(int x, int y, t_draw *draw);
+// Movement
+int	move_left(t_draw *draw);
+int	move_right(t_draw *draw);
+int	move_up(t_draw *draw);
+int	move_down(t_draw *draw);
 // Fractal
 int	is_divergent(t_complex n, int nb_iter);
+int	is_divergent2(t_complex n, int nb_iter, t_complex c);
 
 
 

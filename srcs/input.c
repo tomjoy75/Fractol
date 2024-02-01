@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 17:23:21 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:45:12 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,31 @@ int	handle_keypress(int keysym, t_data *data)
 		data->draw.get_color = get_color_red;
 	else if (keysym == XK_KP_F4)
 		data->draw.get_color = get_color_palette;
+    else if (keysym == XK_Left)
+    {
+        printf("Left Key");
+        move_left(&data->draw);
+    }
+    else if (keysym == XK_Right)
+    {
+        printf("right key");
+        move_right(&data->draw);
+    }
+    else if (keysym == XK_Up)
+    {
+        printf("up key");
+        move_up(&data->draw);
+    }
+    else if (keysym == XK_Down)
+    {
+        printf("down key");
+        move_down(&data->draw);
+    }
+//    else if (keysym == ´q´)
+//    else if (keysym == XK_Right)
+//    else if (keysym == XK_Up)
+//    else if (keysym == XK_Down)
+
 	printf("%d\n", keysym);
 	return (0);
 }

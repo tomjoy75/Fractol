@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:30:45 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/01/31 15:47:29 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/02 00:38:18 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 		{
 			n.real = x * (draw.x_max - draw.x_min) / WINDOW_WIDTH + draw.x_min;
 			n.i = (WINDOW_HEIGHT - y) * (draw.y_max - draw.y_min) / WINDOW_HEIGHT + draw.y_min;
-			iter = is_divergent(n, draw.nb_iter);
+			iter = is_divergent2(n, draw.nb_iter, draw.c_julia);
 			if (!iter)
 				img_pix_put(img, x, y, color);
 			else
