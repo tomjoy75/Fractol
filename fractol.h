@@ -6,7 +6,7 @@
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 00:39:29 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/02 01:09:17 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 #define XK_Up                            0xff52  /* Move up, up arrow */
 #define XK_Right                         0xff53  /* Move right, right arrow */
 #define XK_Down                          0xff54  /* Move down, down arrow */
-# define MAX_ITER 50
+# define MAX_ITER 200
 typedef unsigned char uint8_t;
 //nombre complexe
 typedef struct s_complex
