@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 01:09:17 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/02 15:04:04 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+// # include <unistd.h>
 # include "mlx/mlx.h"
+# include "libft/libft.h"
 # define MLX_ERROR 1
+# define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t./fractol julia <val_real> <val_imaginary>\n"
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 960
 # define XK_Escape 0xff1b
@@ -75,6 +78,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	t_draw	draw;
+	char	*name;
 }		t_data;
 //color
 typedef struct s_color
@@ -95,6 +99,7 @@ int	get_color_palette(int iter);
 void	img_pix_put(t_img *img, int x, int y, int color);
 t_draw	define_drawing_zone(void);
 // Input
+int close_window(t_data *data);
 int	handle_keypress(int keysym, t_data *data);
 int mouse_handler(int mousecode, int x, int y, t_data *data);
 int mouse_movement(int x, int y, t_data *data);

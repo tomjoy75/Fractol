@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 00:44:49 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/02 15:06:14 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,26 @@ int	handle_keypress(int keysym, t_data *data)
 	return (0);
 }
 */
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if ((2 == argc && !ft_strncmp(argv[1], "mandelbrot", 10))
+		|| (4 == argc && !ft_strncmp(argv[1], "julia", 5)))
+	{
+		//Prompt correct
+		data.name = argv[1];
+		
+	}
+	else
+	{
+		ft_putstr_fd(ERROR_MESSAGE, 2);
+		exit(EXIT_FAILURE);
+	}
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "fract'ol");
+	data.win_ptr = mlx_new_window(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, data.name);
 	if (!data.win_ptr)
 		return (free(data.mlx), MLX_ERROR);
 	/* Setup hooks */
@@ -118,6 +130,7 @@ int	main(void)
 	mlx_hook(data.win_ptr, 4, (1L<<2), &mouse_handler, &data);
 	mlx_hook(data.win_ptr, 6, 0L, &mouse_movement , &data);
 	mlx_hook(data.win_ptr, 2, (1L<<0), handle_keypress, &data);
+	mlx_hook(data.win_ptr, 17, (1L<<17), close_window, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img.mlx_img);
 	mlx_destroy_display(data.mlx);

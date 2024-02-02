@@ -3,22 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 00:45:12 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/02 15:39:39 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	handle_keypress(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape)
+int close_window(t_data *data)
 	{
 		mlx_destroy_window(data->mlx, data->win_ptr);
 		data->win_ptr = NULL;
+        return (0);
 	}
+
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+        close_window(data);
+	/*{
+		mlx_destroy_window(data->mlx, data->win_ptr);
+		data->win_ptr = NULL;
+	}*/
 	else if (keysym == XK_KP_F1)
 		data->draw.get_color = get_color_blue;
 	else if (keysym == XK_KP_F2)

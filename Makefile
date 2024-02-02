@@ -6,7 +6,7 @@
 #    By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/11 15:58:40 by tjoyeux           #+#    #+#              #
-#    Updated: 2024/01/26 15:04:40 by tjoyeux          ###   ########.fr        #
+#    Updated: 2024/02/02 13:12:52 by tjoyeux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,12 @@
 NAME = fractol
 MLX_PATH = ./mlx/
 MLX = $(MLX_PATH) libmlx_Linux.a
-
-#LIBFT_PATH = ./libft/
-#LIBFT = $(LIBFT_PATH)libft.a
+LIBFT_PATH = ./libft/
+LIBFT = $(LIBFT_PATH)libft.a
 
 CC		= gcc
 CFLAGS		= -Wall -Werror -Wextra -g3
-LDFLAGS		= -L$(MLX_PATH) -lmlx_Linux -lXext -lX11 -lm
+LDFLAGS		= -L$(MLX_PATH) -lmlx_Linux -lXext -lX11 -lm -L$(LIBFT_PATH) -lft
 RM		= rm -f
 
 SRC_PATH	= ./srcs/
@@ -42,7 +41,7 @@ BUILD_FLAG	:= .build_done
 
 all : $(NAME)
 
-$(NAME) : $(MLX) $(OBJ) fractol.h
+$(NAME) : $(MLX) $(LIBFT) $(OBJ) fractol.h
 	@echo "$(GREEN)$(BOLD)$(ITALIC)$$LINKING$(RESET)\n"
 	@echo "$(MAGENTA)$(BOLD)Linking: $(RESET)$(BLUE)$(ITALIC)$@$(RESET)"
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LDFLAGS)
@@ -58,11 +57,11 @@ $(NAME) : $(MLX) $(OBJ) fractol.h
 
 # #____________________________Common operations_______________________________
 
-# $(LIBFT) : $(LIBFT_PATH)/Makefile
-# 	@echo "$(GREEN)$(BOLD)$(ITALIC)$$LIBFT_HEADER$(RESET)\n"
-# 	@echo "$(MAGENTA)$(BOLD)Libft Construction: $(BLUE)$(ITALIC)$(LIBFT)$(RESET)"
-# 	make -C $(LIBFT_PATH)
-# 	@echo "$(RESET)"
+$(LIBFT) : $(LIBFT_PATH)/Makefile
+	@echo "$(GREEN)$(BOLD)$(ITALIC)$$LIBFT_HEADER$(RESET)\n"
+	@echo "$(MAGENTA)$(BOLD)Libft Construction: $(BLUE)$(ITALIC)$(LIBFT)$(RESET)"
+	make -C $(LIBFT_PATH)
+	@echo "$(RESET)"
 
 $(MLX) : $(MLX_PATH)/Makefile
 	@echo "$(GREEN)$(BOLD)$(ITALIC)$$MLX_HEADER$(RESET)\n"
@@ -87,10 +86,11 @@ clean :
 	$(RM) .build_started
 	@echo "$(MAGENTA)$(BOLD)Cleaning: $(RESET)$(BLUE)$(ITALIC)$(MLX_PATH)*.o$(RESET)"
 	make clean -C $(MLX_PATH)
+	make clean -C $(LIBFT_PATH)
 
 fclean : clean
 	@echo "$(MAGENTA)$(BOLD)Cleaning: $(RESET)$(BLUE)$(ITALIC)$(LIBFT)$(RESET)"
-#make fclean -C $(MLX_PATH)
+	make fclean -C $(LIBFT_PATH)
 	@echo "$(MAGENTA)$(BOLD)Cleaning: $(RESET)$(BLUE)$(ITALIC)$(NAME)$(RESET)"
 	$(RM) $(NAME)
 #	$(RM) $(NAME_BONUS)
