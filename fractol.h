@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 15:04:04 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/03 18:31:16 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 # define MLX_ERROR 1
-# define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t./fractol julia <val_real> <val_imaginary>\n"
+# define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t./fractol burning_ship \nor \n\t./fractol julia <val_real> <val_imaginary>\n"
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 960
 # define XK_Escape 0xff1b
@@ -38,6 +38,9 @@
 # define XK_KP_F2                         0xffbf
 # define XK_KP_F3                         0xffc0
 # define XK_KP_F4                         0xffc1
+# define XK_KP_F5                         0xffc2
+# define XK_KP_F6                         0xffc3
+# define XK_KP_F9                         0xffc6
 #define XK_Left                          0xff51  /* Move left, left arrow */
 #define XK_Up                            0xff52  /* Move up, up arrow */
 #define XK_Right                         0xff53  /* Move right, right arrow */
@@ -79,6 +82,7 @@ typedef struct s_data
 	t_img	img;
 	t_draw	draw;
 	char	*name;
+	int		fractal_mode;
 }		t_data;
 //color
 typedef struct s_color
@@ -96,8 +100,10 @@ int	get_color_blue(int iter);
 int	get_color_blue_invert(int iter);
 int	get_color_red(int iter);
 int	get_color_palette(int iter);
+int get_color_log(int iter);
+int	get_color_psyche(int iter);
 void	img_pix_put(t_img *img, int x, int y, int color);
-t_draw	define_drawing_zone(void);
+int	define_drawing_zone(int fractal_mode, t_draw *draw);
 // Input
 int close_window(t_data *data);
 int	handle_keypress(int keysym, t_data *data);
@@ -112,9 +118,11 @@ int	move_right(t_draw *draw);
 int	move_up(t_draw *draw);
 int	move_down(t_draw *draw);
 // Fractal
+double	magnitude_squared(t_complex z);
 int	is_divergent(t_complex n, int nb_iter);
 int	is_divergent2(t_complex n, int nb_iter, t_complex c);
-
-
+int	is_divergent3(t_complex n, int nb_iter);
+// Utils
+double	ft_atodbl(char *s);
 
 #endif

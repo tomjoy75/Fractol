@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:48:15 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 15:06:14 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/03 18:08:23 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,24 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if ((2 == argc && !ft_strncmp(argv[1], "mandelbrot", 10))
-		|| (4 == argc && !ft_strncmp(argv[1], "julia", 5)))
+	if (2 == argc && !ft_strncmp(argv[1], "mandelbrot", 10))
 	{
 		//Prompt correct
 		data.name = argv[1];
-		
+		data.fractal_mode = 1;
+	}
+	else if (4 == argc && !ft_strncmp(argv[1], "julia", 5))
+	{
+		data.name = argv[1];
+		data.draw.c_julia.real = ft_atodbl(argv[2]);
+		data.draw.c_julia.i = ft_atodbl(argv[3]);
+		data.fractal_mode = 2;
+//		printf ("real_part : %f imagin_part : %f\n", data.draw.c_julia.real, data.draw.c_julia.i);
+	}
+	else if (2 == argc && !ft_strncmp(argv[1], "burning_ship", 12))
+	{
+		data.name = argv[1];
+		data.fractal_mode = 3;
 	}
 	else
 	{
@@ -124,7 +136,7 @@ int	main(int argc, char **argv)
 		return (free(data.mlx), MLX_ERROR);
 	/* Setup hooks */
 	data.img.mlx_img = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data.draw = define_drawing_zone();
+	define_drawing_zone(data.fractal_mode, &data.draw);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win_ptr, 4, (1L<<2), &mouse_handler, &data);

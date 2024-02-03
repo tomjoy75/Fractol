@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 15:39:39 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/03 19:02:51 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int	handle_keypress(int keysym, t_data *data)
 		data->draw.get_color = get_color_red;
 	else if (keysym == XK_KP_F4)
 		data->draw.get_color = get_color_palette;
+	else if (keysym == XK_KP_F5)
+		data->draw.get_color = get_color_log;
+	else if (keysym == XK_KP_F6)
+		data->draw.get_color = get_color_psyche;
+    else if (keysym == XK_KP_F9)
+        printf("x_min : %f x_max : %f y_min : %f y_max : %f \n", data->draw.x_min, data->draw.x_max, data->draw.y_min, data->draw.y_max);
     else if (keysym == XK_Left)
     {
         printf("Left Key");
@@ -55,6 +61,14 @@ int	handle_keypress(int keysym, t_data *data)
         printf("down key");
         move_down(&data->draw);
     }
+    else if (keysym == 119)
+        data->draw.c_julia.i += 0.1;
+    else if (keysym == 115)
+        data->draw.c_julia.i -= 0.1;
+    else if (keysym == 97)
+        data->draw.c_julia.real -= 0.1;
+    else if (keysym == 100)
+        data->draw.c_julia.real += 0.1;
 //    else if (keysym == ´q´)
 //    else if (keysym == XK_Right)
 //    else if (keysym == XK_Up)

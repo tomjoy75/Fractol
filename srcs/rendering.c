@@ -6,13 +6,13 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:30:45 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/02 10:32:57 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/03 18:33:07 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	render_fractal(t_img *img, t_draw draw, int color)
+void	render_fractal(t_img *img, t_draw draw, int fractal_mode)
 {
 	int	x;
 	int	y;
@@ -20,6 +20,7 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 	int	iter;
 
 	y = 0;
+//	printf("fractal_mode : %d\n", fractal_mode);
 	while (y < WINDOW_HEIGHT)
 	{
 		x = 0;
@@ -27,10 +28,14 @@ void	render_fractal(t_img *img, t_draw draw, int color)
 		{
 			n.real = x * (draw.x_max - draw.x_min) / WINDOW_WIDTH + draw.x_min;
 			n.i = (WINDOW_HEIGHT - y) * (draw.y_max - draw.y_min) / WINDOW_HEIGHT + draw.y_min;
-			iter = is_divergent(n, draw.nb_iter);
-//			iter = is_divergent2(n, draw.nb_iter, draw.c_julia);
+			if (fractal_mode == 1)
+				iter = is_divergent(n, draw.nb_iter);
+			else if (fractal_mode == 2)
+				iter = is_divergent2(n, draw.nb_iter, draw.c_julia);
+			else if (fractal_mode == 3)
+				iter = is_divergent3(n, draw.nb_iter);
 			if (!iter)
-				img_pix_put(img, x, y, color);
+				img_pix_put(img, x, y, 0x00);
 			else
 				img_pix_put(img, x, y, draw.get_color(iter));
 			x++;
@@ -43,7 +48,8 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	render_fractal(&data->img, data->draw, 0x000000);
+	//if (data->fractal_mode == 1)
+	render_fractal(&data->img, data->draw, data->fractal_mode);
 	mlx_put_image_to_window(data->mlx, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
