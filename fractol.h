@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/03 18:31:16 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/04 00:04:33 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@
 # define XK_KP_F5                         0xffc2
 # define XK_KP_F6                         0xffc3
 # define XK_KP_F9                         0xffc6
-#define XK_Left                          0xff51  /* Move left, left arrow */
-#define XK_Up                            0xff52  /* Move up, up arrow */
-#define XK_Right                         0xff53  /* Move right, right arrow */
-#define XK_Down                          0xff54  /* Move down, down arrow */
+# define XK_Left                          0xff51  /* Move left, left arrow */
+# define XK_Up                            0xff52  /* Move up, up arrow */
+# define XK_Right                         0xff53  /* Move right, right arrow */
+# define XK_Down                          0xff54  /* Move down, down arrow */
 # define MAX_ITER 200
 typedef unsigned char uint8_t;
 //nombre complexe

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/03 19:02:51 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:47:46 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,31 @@ int	handle_keypress(int keysym, t_data *data)
         data->draw.c_julia.real -= 0.1;
     else if (keysym == 100)
         data->draw.c_julia.real += 0.1;
+    else if (keysym == 112)
+    {
+        data->draw.c_julia.real = -0.835;
+        data->draw.c_julia.i = -0.2321;
+    }
+    else if (keysym == 111)
+    {
+        data->draw.c_julia.real = 0.285;
+        data->draw.c_julia.i = 0;
+    }
+    else if (keysym == 105)
+    {
+        data->draw.c_julia.real = 0.4;
+        data->draw.c_julia.i = 0.4;
+    }
+    else if (keysym == 117)
+    {
+        data->draw.c_julia.real = 0;
+        data->draw.c_julia.i = 0.8;
+    }
+    else if (keysym == 121)
+    {
+        data->draw.c_julia.real = 0.285;
+        data->draw.c_julia.i = 0.01;
+    }
 //    else if (keysym == ´q´)
 //    else if (keysym == XK_Right)
 //    else if (keysym == XK_Up)
