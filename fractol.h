@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/04 00:04:33 by joyeux           ###   ########.fr       */
+/*   Updated: 2024/02/05 18:01:12 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,11 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 # define MLX_ERROR 1
-# define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t./fractol burning_ship \nor \n\t./fractol julia <val_real> <val_imaginary>\n"
+# define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t \
+./fractol burning_ship \nor \n\t./fractol julia <val_real> <val_imaginary>\n"
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 960
-# define XK_Escape 0xff1b
-// # define XK_KP_0                          0xffb0
-// # define XK_KP_1                          0xffb1
-// # define XK_KP_2                          0xffb2
-// # define XK_KP_3                          0xffb3
-// # define XK_KP_4                          0xffb4
-// # define XK_KP_5                          0xffb5
-// # define XK_KP_6                          0xffb6
-// # define XK_KP_7                          0xffb7
-// # define XK_KP_8                          0xffb8
-// # define XK_KP_9                          0xffb9
+# define XK_ESC 0xff1b
 # define XK_KP_F1                         0xffbe
 # define XK_KP_F2                         0xffbf
 # define XK_KP_F3                         0xffc0
@@ -41,12 +32,14 @@
 # define XK_KP_F5                         0xffc2
 # define XK_KP_F6                         0xffc3
 # define XK_KP_F9                         0xffc6
-# define XK_Left                          0xff51  /* Move left, left arrow */
-# define XK_Up                            0xff52  /* Move up, up arrow */
-# define XK_Right                         0xff53  /* Move right, right arrow */
-# define XK_Down                          0xff54  /* Move down, down arrow */
-# define MAX_ITER 200
-typedef unsigned char uint8_t;
+# define XK_LEFT                          0xff51  /* Move left, left arrow */
+# define XK_UP                            0xff52  /* Move up, up arrow */
+# define XK_RIGHT                         0xff53  /* Move right, right arrow */
+# define XK_DOWN                          0xff54  /* Move down, down arrow */
+# define MIN_ITER 100
+# define MAX_ITER 800
+
+typedef unsigned char	t_uint8;
 //nombre complexe
 typedef struct s_complex
 {
@@ -58,20 +51,20 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
-	int	bpp;
-	int	line_len;
-	int	endian;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }		t_img;
 //drawing zone
 typedef struct s_draw
 {
-	double	x_min;
-	double	x_max;
-	double	y_min;
-	double	y_max;
-	double	zoom;
+	double		x_min;
+	double		x_max;
+	double		y_min;
+	double		y_max;
+	double		zoom;
 	double		nb_iter;
-	int		(*get_color)(int);
+	int			(*get_color)(int);
 	t_complex	c_julia;
 }		t_draw;
 //structure de base
@@ -87,41 +80,46 @@ typedef struct s_data
 //color
 typedef struct s_color
 {
-	uint8_t	red;
-	uint8_t green;
-	uint8_t	blue;
+	t_uint8	red;
+	t_uint8	green;
+	t_uint8	blue;
 }		t_color;
 
 // Rendering
-int	render(t_data *data);
+int		render(t_data *data);
 // Graphics
-int	get_color(int iter);
-int	get_color_blue(int iter);
-int	get_color_blue_invert(int iter);
-int	get_color_red(int iter);
-int	get_color_palette(int iter);
-int get_color_log(int iter);
-int	get_color_psyche(int iter);
+int		encode_rgb(t_uint8 red, t_uint8 green, t_uint8 blue);
 void	img_pix_put(t_img *img, int x, int y, int color);
-int	define_drawing_zone(int fractal_mode, t_draw *draw);
+int		define_drawing_zone(int fractal_mode, t_draw *draw);
+// Colors
+//int		get_color(int iter);
+int		get_color_blue(int iter);
+int		get_color_blue_invert(int iter);
+int		get_color_red(int iter);
+int		get_color_palette(int iter);
+int		get_color_log(int iter);
+int		get_color_psyche(int iter);
 // Input
-int close_window(t_data *data);
-int	handle_keypress(int keysym, t_data *data);
-int mouse_handler(int mousecode, int x, int y, t_data *data);
-int mouse_movement(int x, int y, t_data *data);
+int		close_window(t_data *data);
+int		handle_keypress(int keysym, t_data *data);
+int		handle_keypress_julia(int keysym, t_data *data);
+int		mouse_handler(int mousecode, int x, int y, t_data *data);
+//int		mouse_movement(int x, int y, t_data *data);
 // Zoom
-int	zoom_in(int x, int y, t_draw *draw);
-int zoom_out(int x, int y, t_draw *draw);
+int		zoom_in(int x, int y, t_draw *draw);
+int		zoom_out(t_draw *draw);
 // Movement
-int	move_left(t_draw *draw);
-int	move_right(t_draw *draw);
-int	move_up(t_draw *draw);
-int	move_down(t_draw *draw);
+int		move_left(t_draw *draw);
+int		move_right(t_draw *draw);
+int		move_up(t_draw *draw);
+int		move_down(t_draw *draw);
 // Fractal
+void	next_complex_nb(t_complex c, t_complex *z);
+void	next_complex_burn(t_complex c, t_complex *z);
 double	magnitude_squared(t_complex z);
-int	is_divergent(t_complex n, int nb_iter);
-int	is_divergent2(t_complex n, int nb_iter, t_complex c);
-int	is_divergent3(t_complex n, int nb_iter);
+int		is_divergent(t_complex n, int nb_iter, void (*f)(t_complex, t_complex *));
+int		is_divergent_julia(t_complex n, int nb_iter, t_complex c);
+//int		is_divergent3(t_complex n, int nb_iter);
 // Utils
 double	ft_atodbl(char *s);
 

@@ -6,7 +6,7 @@
 /*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:43:30 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/03 13:24:17 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/05 17:47:41 by tjoyeux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	ft_atodbl(char *s)
 	while (*s >= '0' && *s <= '9')
 	{
 		decimal_pos *= 0.1;
-		decimal_part += decimal_pos * (*s++ - 48);		
+		decimal_part += decimal_pos * (*s++ - 48);
 	}
 	return (sign * (int_part + decimal_part));
 }
