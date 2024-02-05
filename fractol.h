@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjoyeux <tjoyeux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 23:40:01 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/05 18:01:12 by tjoyeux          ###   ########.fr       */
+/*   Updated: 2024/02/05 23:11:59 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,14 @@ int		get_color_psyche(int iter);
 // Input
 int		close_window(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
-int		handle_keypress_julia(int keysym, t_data *data);
+//int		handle_keypress_julia(int keysym, t_data *data);
 int		mouse_handler(int mousecode, int x, int y, t_data *data);
 //int		mouse_movement(int x, int y, t_data *data);
+// Keys
+int		handle_keypress_color(int keysym, t_data *data);
+int		handle_keypress_moves(int keysym, t_data *data);
+int		handle_keypress_julia(int keysym, t_data *data);
+int		handle_keypress_julia2(int keysym, t_data *data);
 // Zoom
 int		zoom_in(int x, int y, t_draw *draw);
 int		zoom_out(t_draw *draw);
@@ -117,7 +122,8 @@ int		move_down(t_draw *draw);
 void	next_complex_nb(t_complex c, t_complex *z);
 void	next_complex_burn(t_complex c, t_complex *z);
 double	magnitude_squared(t_complex z);
-int		is_divergent(t_complex n, int nb_iter, void (*f)(t_complex, t_complex *));
+int		is_divergent(t_complex n, int nb_iter \
+	, void (*f)(t_complex, t_complex *));
 int		is_divergent_julia(t_complex n, int nb_iter, t_complex c);
 //int		is_divergent3(t_complex n, int nb_iter);
 // Utils

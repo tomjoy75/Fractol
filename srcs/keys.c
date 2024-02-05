@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joyeux <joyeux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:42:00 by tjoyeux           #+#    #+#             */
-/*   Updated: 2024/02/05 23:04:16 by joyeux           ###   ########.fr       */
+/*   Created: 2024/02/05 23:01:55 by tjoyeux           #+#    #+#             */
+/*   Updated: 2024/02/05 23:03:40 by joyeux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	close_window(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win_ptr);
-	data->win_ptr = NULL;
-	return (0);
-}
-/*
 int	handle_keypress_color(int keysym, t_data *data)
 {
 	if (keysym == XK_ESC)
@@ -100,52 +93,4 @@ int	handle_keypress_julia2(int keysym, t_data *data)
 		data->draw.c_julia.i = 0.01;
 	}
 	return (0);
-}*/
-
-int	handle_keypress(int keysym, t_data *data)
-{
-	handle_keypress_color(keysym, data);
-	handle_keypress_moves(keysym, data);
-	if (data->fractal_mode == 2)
-	{
-		handle_keypress_julia(keysym, data);
-		handle_keypress_julia2(keysym, data);
-	}
-	return (0);
 }
-
-int	mouse_handler(int mousecode, int x, int y, t_data *data)
-{
-	printf("Mouse handler called\n");
-	if (mousecode == 1)
-		printf("Left Click");
-	else if (mousecode == 2)
-		printf("Right Click");
-	else if (mousecode == 3)
-		printf("Middle Click");
-	else if (mousecode == 4)
-	{
-		printf("Scroll UP");
-		zoom_in(x, y, &data->draw);
-	}
-	else if (mousecode == 5)
-	{
-		printf("Scroll DOWN");
-		zoom_out(&data->draw);
-	}
-	else if (mousecode == 6)
-		printf("Scroll right");
-	else if (mousecode == 7)
-		printf("Scroll left");
-	else
-		printf("%d\n", mousecode);
-	printf ("x : %d, y : %d\n", x, y);
-	return (0);
-}
-/*
-int	mouse_movement(int x, int y, t_data *data)
-{
-	(void)data;
-	printf("x:%d, y:%d\n", x, y);
-	return (0);
-}*/
