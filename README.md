@@ -48,7 +48,7 @@ sudo apt install libx11-dev libxext-dev libbsd-dev
 ### Build
 
 ``` bash
-git clone <repo_url>
+git clone --recurse-submodules git@github.com:tomjoy75/Fractol.git
 cd fractol
 make
 ``` 
