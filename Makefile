@@ -12,7 +12,7 @@
 
 #________________________________Variables___________________________________
 NAME = fractol
-MLX_PATH = ./mlx/
+MLX_PATH = ./minilibx-linux/
 MLX = $(MLX_PATH) libmlx_Linux.a
 LIBFT_PATH = ./libft/
 LIBFT = $(LIBFT_PATH)libft.a
@@ -68,7 +68,7 @@ $(MLX) : $(MLX_PATH)/Makefile
 	@echo "$(MAGENTA)$(BOLD)MiniLibx Construction: $(BLUE)$(ITALIC)$(LIBFT)$(RESET)"
 	make -C $(MLX_PATH)
 	@echo "$(RESET)"
- 
+
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c fractol.h
 	@if [ ! -f $(FLAG_FILE) ]; then touch $(FLAG_FILE); echo "$(GREEN)$(BOLD)$$COMPILATION$(RESET)"; fi
 	@mkdir -p $(@D)
@@ -98,10 +98,10 @@ fclean : clean
 re : fclean all
 
 ##debug :  push_swap.h
-##	$(CC) $(CFLAGS) -c -I. -g3 -fsanitize=address $(SRC) 
+##	$(CC) $(CFLAGS) -c -I. -g3 -fsanitize=address $(SRC)
 
 ##debug_bonus :  push_swap.h
-##	$(CC) $(CFLAGS) -c -I. -g3 -fsanitize=address $(SRC_BONUS) 
+##	$(CC) $(CFLAGS) -c -I. -g3 -fsanitize=address $(SRC_BONUS)
 
 .PHONY : all clean fclean re debug debug_bonus
 
@@ -121,11 +121,11 @@ BLINK := \e[5m
 define START
 
 
-   ___| __ __|   \      _ \ __ __| 
- \___ \    |    _ \    |   |   |   
-       |   |   ___ \   __ <    |   
- _____/   _| _/    _\ _| \_\  _|   
-                                   
+   ___| __ __|   \      _ \ __ __|
+ \___ \    |    _ \    |   |   |
+       |   |   ___ \   __ <    |
+ _____/   _| _/    _\ _| \_\  _|
+
 
 
 endef
@@ -134,26 +134,26 @@ export START
 define LIBFT_HEADER
 
 
-  |     _ _|  __ )   ____| __ __| 
-  |       |   __ \   |        |   
-  |       |   |   |  __|      |   
- _____| ___| ____/  _|       _|   
-                                  
+  |     _ _|  __ )   ____| __ __|
+  |       |   __ \   |        |
+  |       |   |   |  __|      |
+ _____| ___| ____/  _|       _|
+
 
 endef
 export LIBFT_HEADER
 
 define MLX_HEADER
 
- __   __  ___   __    _  ___   ___      ___   _______  __   __ 
+ __   __  ___   __    _  ___   ___      ___   _______  __   __
 |  |_|  ||   | |  |  | ||   | |   |    |   | |  _    ||  |_|  |
 |       ||   | |   |_| ||   | |   |    |   | | |_|   ||       |
 |       ||   | |       ||   | |   |    |   | |       ||       |
-|       ||   | |  _    ||   | |   |___ |   | |  _   |  |     | 
+|       ||   | |  _    ||   | |   |___ |   | |  _   |  |     |
 | ||_|| ||   | | | |   ||   | |       ||   | | |_|   ||   _   |
 |_|   |_||___| |_|  |__||___| |_______||___| |_______||__| |__|
 
-                                 
+
 
 endef
 export MLX_HEADER
@@ -161,11 +161,11 @@ export MLX_HEADER
 define COMPILATION
 
 
-   ___|   _ \    \  |   _ \ _ _|  |         \  __ __| _ _|   _ \    \  | 
-  |      |   |  |\/ |  |   |  |   |        _ \    |     |   |   |    \ | 
-  |      |   |  |   |  ___/   |   |       ___ \   |     |   |   |  |\  | 
- \____| \___/  _|  _| _|    ___| _____| _/    _\ _|   ___| \___/  _| \_| 
-                                                                         
+   ___|   _ \    \  |   _ \ _ _|  |         \  __ __| _ _|   _ \    \  |
+  |      |   |  |\/ |  |   |  |   |        _ \    |     |   |   |    \ |
+  |      |   |  |   |  ___/   |   |       ___ \   |     |   |   |  |\  |
+ \____| \___/  _|  _| _|    ___| _____| _/    _\ _|   ___| \___/  _| \_|
+
 
 
 endef
@@ -174,10 +174,10 @@ export COMPILATION
 define LINKING
 
 
-  |     _ _|   \  |  |  / _ _|   \  |   ___| 
-  |       |     \ |  ' /    |     \ |  |     
-  |       |   |\  |  . \    |   |\  |  |   | 
- _____| ___| _| \_| _|\_\ ___| _| \_| \____| 
+  |     _ _|   \  |  |  / _ _|   \  |   ___|
+  |       |     \ |  ' /    |     \ |  |
+  |       |   |\  |  . \    |   |\  |  |   |
+ _____| ___| _| \_| _|\_\ ___| _| \_| \____|
 
 
 endef
@@ -191,5 +191,5 @@ define CLEANING
   |      |      |       ___ \   |\  |   |   |\  |  |   |
  \____| _____| _____| _/    _\ _| \_| ___| _| \_| \____|
 
-endef 
+endef
 export CLEANING

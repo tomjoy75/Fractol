@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <math.h>
 // # include <unistd.h>
-# include "mlx/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # define MLX_ERROR 1
 # define ERROR_MESSAGE "Please enter \n\t./fractol mandelbrot \nor \n\t \
